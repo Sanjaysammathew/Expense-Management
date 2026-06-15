@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#nav-container {
+    background-color: #0033AB;
+}
+
+.one-text {
+    color: #0033AB;
+}
+
+#register, #Login {
+    background-color: #0033AB;
+    color: white;
+    padding: 10px 24px;
+    border: 1px solid #0033AB;
+    transition: background-color 0.2s ease;
+}
+
+#register:hover, #Login:hover {
+    background-color: #002275;
+    color: white;
+}
+
+.hero-image {
+    max-height: 450px;
+    width: auto;
+    object-fit: contain;
+}
+
+.slogan-container {
+    background-color: #0033AB;
+    color: white;
+}
+
+.about-website {
+    background-color: #e8edff;
+}
+
+.text-primary-custom {
+    color: #0033AB;
+}
+
+.step-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 51, 171, 0.1) !important;
+}
+
+.step-badge-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.step-badge {
+    background-color: #0033AB;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 51, 171, 0.2);
+}
