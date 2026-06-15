@@ -167,119 +167,134 @@
         </div>
     </div>
 
- <div class="modal fade" id="registerModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Register</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                
-                <div class="row g-2 mb-3">
-                    <div class="col-5">
+    <div class="modal fade" id="registerModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    <div class="row g-2 mb-3">
+                        <div class="col-5">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="empId" placeholder="Employee ID">
+                                <label for="empId">Employee ID</label>
+                            </div>
+                            <div id="error-empId" class="text-danger small mt-1"></div>
+                        </div>
+                        <div class="col-7">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                                <label for="fullName">Full Name</label>
+                            </div>
+                            <div id="error-fullName" class="text-danger small mt-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="empId" placeholder="Employee ID">
-                            <label for="empId">Employee ID</label>
+                            <input type="email" class="form-control" id="email" placeholder="email Address" >
+                            <label for="email">Email Address</label>
                         </div>
-                        <div id="error-empId" class="text-danger small mt-1"></div>
+                        <div id="error-email" class="text-danger small mt-1"></div>
                     </div>
-                    <div class="col-7">
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="regPassword" placeholder="Password">
+                                <label for="regPassword">Password</label>
+                            </div>
+                            <div id="error-password" class="text-danger small mt-1"></div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="Confirmpassword" placeholder="Confirm Password">
+                                <label for="Confirmpassword">Confirm Password</label>
+                            </div>
+                            <div id="error-confirmPassword" class="text-danger small mt-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="fullName" placeholder="Full Name">
-                            <label for="fullName">Full Name</label>
+                            <input type="date" class="form-control" id="date" placeholder="DOB">
+                            <label for="date">DOB</label>
                         </div>
-                        <div id="error-fullName" class="text-danger small mt-1"></div>
+                        <div id="error-date" class="text-danger small mt-1"></div>
                     </div>
-                </div>
 
-                <div class="mb-3">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="email" placeholder="Email Address">
-                        <label for="email">Email Address</label>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="department">
+                                    <option selected disabled value="">Select Department</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="HR">Human Resources</option>
+                                    <option value="IT">IT & Engineering</option>
+                                    <option value="Sales">Sales & Marketing</option>
+                                    <option value="Operations">Operations</option>
+                                </select>
+                                <label for="department">Department</label>
+                            </div>
+                            <div id="error-department" class="text-danger small mt-1"></div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="designation" placeholder="Designation">
+                                <label for="designation">Designation</label>
+                            </div>
+                            <div id="error-designation" class="text-danger small mt-1"></div>
+                        </div>
                     </div>
-                    <div id="error-email" class="text-danger small mt-1"></div>
-                </div>
 
-                <div class="row g-2 mb-3">
-                    <div class="col-6">
+                    <div class="mb-3">
+                        <label class="form-label d-block text-muted small mb-1">Gender</label>
+                        <div class="d-flex gap-3 py-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="Male" checked>
+                                <label class="form-check-label small" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                                <label class="form-check-label small" for="female">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
+                                <label class="form-check-label small" for="other">Other</label>
+                            </div>
+                        </div>
+                        <div id="error-gender" class="text-danger small mt-1"></div>
+                    </div>
+
+                    <div class="mb-2">
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="regPassword" placeholder="Password">
-                            <label for="regPassword">Password</label>
+                            <select class="form-select" id="role">
+                                <option selected disabled value="">Select Role</option>
+                                <option value="Employee">Employee</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                            <label for="role">Role</label>
                         </div>
-                        <div id="error-password" class="text-danger small mt-1"></div>
+                        <div id="error-role" class="text-danger small mt-1"></div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="Confirmpassword" placeholder="Confirm Password">
-                            <label for="Confirmpassword">Confirm Password</label>
-                        </div>
-                        <div id="error-confirmPassword" class="text-danger small mt-1"></div>
-                    </div>
-                </div>
 
-                <div class="mb-3">
-                    <div class="form-floating">
-                        <input type="date" class="form-control" id="date" placeholder="DOB">
-                        <label for="date">DOB</label>
-                    </div>
-                    <div id="error-date" class="text-danger small mt-1"></div>
                 </div>
-
-                <div class="mb-3">
-                    <label for="department" class="form-label text-muted small mb-1">Department</label>
-                    <select class="form-select py-2" id="department" style="height: calc(3.5rem + 2px);">
-                        <option selected disabled>Select Department</option>
-                        <option value="Finance">Finance / Accounting</option>
-                        <option value="HR">Human Resources</option>
-                        <option value="IT">IT & Engineering</option>
-                        <option value="Sales">Sales & Marketing</option>
-                        <option value="Operations">Operations</option>
-                    </select>
-                    <div id="error-department" class="text-danger small mt-1"></div>
+                <div class="modal-footer justify-content-start">
+                    <button class="btn btn-primary">Register</button>
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label d-block text-muted small mb-1">Gender</label>
-                    <div class="d-flex gap-3 py-2">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="Male" checked>
-                            <label class="form-check-label small" for="male">Male</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
-                            <label class="form-check-label small" for="female">Female</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
-                            <label class="form-check-label small" for="other">Other</label>
-                        </div>
-                    </div>
-                    <div id="error-gender" class="text-danger small mt-1"></div>
-                </div>
-
-                <div class="mb-2">
-                    <label for="role" class="form-label text-muted small mb-1">Role</label>
-                    <select class="form-select py-2" id="role" style="height: calc(3.5rem + 2px);">
-                        <option selected disabled>Select Role</option>
-                        <option value="Employee">Employee</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                    <div id="error-role" class="text-danger small mt-1"></div>
-                </div>
-
-            </div>
-            <div class="modal-footer justify-content-start">
-                <button class="btn btn-primary">Register</button>
             </div>
         </div>
     </div>
-</div>
 
     <div class="container-fluid p-3 text-center slogan-container">
         <p class="text-light mb-0">&copy; 2026 Expense Management &middot; Built for modern teams &middot; All rights reserved</p>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

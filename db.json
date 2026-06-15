@@ -1,5 +1,20 @@
 {
-  "users": [],
+  "users": [
+    {
+      "employeeId": "101",
+      "fullName": "Sanjay Sam Mathew",
+      "email": "Sanjay05@gmail.com",
+      "password": "Sanjay@2005",
+      "dob": "2004-07-20",
+      "department": "HR",
+      "designation": "Software Engineer",
+      "gender": "Male",
+      "role": "Employee",
+      "createdAt": "2026-06-15T14:23:33.959Z",
+      "id": "NGunY9yarfE"
+    }
+  ],
   "expenses": [],
-  "notifications": []
+  "notifications": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }
