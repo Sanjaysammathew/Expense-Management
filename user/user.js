@@ -31,27 +31,12 @@ $(document).ready(function () {
   });
 });
 
-const convertFileToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
-};
+
 
 document.getElementById("expenseForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   try {
-    const receiptInputElement = document.getElementById("expReceipt");
-    const receiptFile = receiptInputElement ? receiptInputElement.files[0] : null;
-    
-    let base64DataString = "base64-image";
-
-    if (receiptFile) {
-      base64DataString = await convertFileToBase64(receiptFile);
-    }
 
     const data = {
       "employeeId": currentUser.employeeId,
@@ -63,7 +48,6 @@ document.getElementById("expenseForm").addEventListener("submit", async function
       "expenseDate": document.getElementById("expDate").value.trim(),
       "description": document.getElementById("expDesc").value.trim(),
       "priority": document.getElementById("expPriority").value.trim(),
-      "receipt": base64DataString,
       "status": "Pending",
        "isDeleted": false, 
       "remark": "",
@@ -179,7 +163,6 @@ function viewExpense(id) {
         <p><b>Description:</b> ${expense.description}</p>
         <p><b>Priority:</b> ${expense.priority}</p>
         <p><b>Status:</b> ${expense.status}</p>
-
         ${
           expense.status === "Pending"
           ?
@@ -519,6 +502,7 @@ document
         )
     );
 });
+
 
 document.getElementById("logoutBtn").addEventListener("click",() =>{
     window.location.href="../landing/index.html"

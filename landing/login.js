@@ -127,15 +127,7 @@ function validateDesignation() {
     return true;
 }
 
-function validateRole() {
-    const value = $("#role").val();
-    if (!value) {
-        setError("#role", "error-role", "Please select a role");
-        return false;
-    }
-    clearError("#role", "error-role");
-    return true;
-}
+
 
 async function registerUser() {
     const isEmpIdValid = validateEmpId();
@@ -146,9 +138,8 @@ async function registerUser() {
     const isDobValid = validateDOB();
     const isDeptValid = validateDepartment();
     const isDesigValid = validateDesignation();
-    const isRoleValid = validateRole();
 
-    if (!isEmpIdValid || !isNameValid || !isEmailValid || !isPasswordValid || !isConfirmPasswordValid || !isDobValid || !isDeptValid || !isDesigValid || !isRoleValid) {
+    if (!isEmpIdValid || !isNameValid || !isEmailValid || !isPasswordValid || !isConfirmPasswordValid || !isDobValid || !isDeptValid || !isDesigValid) {
         return;
     }
 
@@ -161,12 +152,36 @@ async function registerUser() {
         department: $("#department").val(),
         designation: $("#designation").val().trim(),
         gender: $("input[name='gender']:checked").val(),
-        role: $("#role").val(),
+        role: "Employee",
         createdAt: new Date().toISOString()
     };
 
     try {
-        const response = await fetch(API, {
+            const existingResponse = await fetch(API);
+const existingUsers = await existingResponse.json();
+
+const duplicateEmpId = existingUsers.find(
+    user => user.employeeId === $("#empId").val().trim()
+);
+
+if (duplicateEmpId) {
+    Swal.fire({
+        icon: "error",
+        title: "Duplicate Employee ID",
+        text: "This Employee ID already exists."
+    });
+
+    $("#empId")
+        .addClass("is-invalid")
+        .removeClass("is-valid");
+
+    $("#error-empId").text(
+        "Employee ID already exists"
+    );
+
+    return;
+}
+            const response = await fetch(API, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -266,7 +281,6 @@ $("#Confirmpassword").on("input", validateConfirmPassword);
 $("#date").on("input change", validateDOB);
 $("#department").on("change", validateDepartment);
 $("#designation").on("input", validateDesignation);
-$("#role").on("change", validateRole);
 
 $("#registerModal .btn-primary").click(registerUser);
 $("#loginModal .btn-primary").click(loginUser);
