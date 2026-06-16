@@ -125,7 +125,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <p class="text-uppercase tracking-wider small fw-bold text-muted mb-1">Total Expenses</p>
-                            <h3 class="display-5 fw-bold text-dark mb-0">06</h3>
+                            <h3  id ="totalCount"   class="display-5 fw-bold text-dark mb-0"></h3>
                         </div>
                         <div class="stat-icon-box bg-primary-subtle text-primary rounded-3 p-3 d-flex align-items-center justify-content-center">
                             <i class="bi bi-wallet2 fs-3"></i>
@@ -144,7 +144,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <p class="text-uppercase tracking-wider small fw-bold text-muted mb-1">Completed</p>
-                            <h3 class="display-5 fw-bold text-success mb-0">04</h3>
+                            <h3 id="completedCount"   class="display-5 fw-bold text-success mb-0"></h3>
                         </div>
                         <div class="stat-icon-box bg-success-subtle text-success rounded-3 p-3 d-flex align-items-center justify-content-center">
                             <i class="bi bi-check-circle-fill fs-3"></i>
@@ -163,7 +163,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <p class="text-uppercase tracking-wider small fw-bold text-muted mb-1">Pending Review</p>
-                            <h3 class="display-5 fw-bold text-warning mb-0">02</h3>
+                            <h3 id="pendingCount" class="display-5 fw-bold text-warning mb-0"></h3>
                         </div>
                         <div class="stat-icon-box bg-warning-subtle text-warning rounded-3 p-3 d-flex align-items-center justify-content-center">
                             <i class="bi bi-clock-history fs-3"></i>
@@ -184,7 +184,6 @@
         <table class="table table-bordered table-hover align-middle text-center">
             <thead class="table-primary">
                 <tr>
-                    <th>Emp ID</th>
                     <th>Title</th>
                     <th>Category</th>
                     <th>Amount</th>
@@ -208,6 +207,67 @@
             </div>
 
             <div class="modal-body" id="expenseDetails">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5>Edit Expense</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="editId">
+
+                <div class="mb-2">
+                    <label>Title</label>
+                    <input type="text" id="editTitle" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label>Category</label>
+                    <input type="text" id="editCategory" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label>Amount</label>
+                    <input type="number" id="editAmount" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label>Date</label>
+                    <input type="date" id="editDate" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label>Description</label>
+                    <textarea id="editDesc" class="form-control"></textarea>
+                </div>
+
+                <div class="mb-2">
+                    <label>Priority</label>
+                    <select id="editPriority" class="form-select">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button
+                    class="btn btn-primary"
+                    id="updateExpenseBtn">
+                    Update Expense
+                </button>
             </div>
 
         </div>
