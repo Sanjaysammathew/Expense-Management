@@ -218,7 +218,7 @@ async function loginUser() {
 
         const user = users.find(
             u =>
-                (u.fullName === username || u.email === username || u.employeeId === username) &&
+                u.fullName === username &&
                 u.password === password
         );
 

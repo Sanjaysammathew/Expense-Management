@@ -3,9 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Claimly - Expenses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../user/user.css">
 </head>
-<body>
-    <p>Hello</p>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" id="nav-container">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-white fs-4" href="#">Claimly</a>
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navs" aria-controls="navs" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="navbar-collapse collapse" id="navs">
+            <div class="navbar-nav ms-auto align-items-center flex-row justify-content-end gap-2 mt-2 mt-lg-0">
+                <div class="nav-item">
+                    <button class="btn nav-icon-btn text-white p-2" id="darkModeToggle" title="Toggle Dark Mode">
+                        <i class="bi bi-moon-stars-fill fs-5"></i>
+                    </button>
+                </div>
+                <div class="nav-item">
+                    <button class="btn nav-icon-btn text-white p-2" id="userProfileBtn" title="User Profile">
+                        <i class="bi bi-person-circle fs-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+ 
+<div class="container my-4">
+    <div class="row align-items-center g-3">
+        <div class="col-12 col-md-6 text-center text-md-start">
+            <h2 class="h3 m-0 fw-bold text-dark">My Expenses</h2>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="d-flex justify-content-center justify-content-md-end gap-2">
+                <button class="btn px-4 fw-medium" id="addBtn">
+                    <i class="bi bi-plus-lg me-1"></i> Add
+                </button>
+                <button class="btn px-4 fw-medium" id="restoreBtn">
+                    <i class="bi bi-arrow-counterclockwise me-1"></i> Restore
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="container my-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start" id="button-container">
+                <button class="btn btn-primary px-4 rounded-pill fw-medium">All</button>
+                <button class="btn btn-success px-4 rounded-pill fw-medium">Completed</button>
+                <button class="btn btn-warning px-4 rounded-pill fw-medium text-dark">Pending</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container my-4">
+    <div class="p-4 bg-white rounded-4 shadow-sm border border-light">
+        <div class="row g-3 align-items-end">
+            
+            <div class="col-12 col-lg-5">
+                <label for="taskSearch" class="form-label filter-label fw-semibold text-secondary small mb-2">
+                    <i class="bi bi-search me-1 text-primary"></i> Search by Task Name
+                </label>
+                <div class="input-group custom-input-group">
+                    <span class="input-group-text bg-light border-end-0 text-muted ps-3">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" id="taskSearch" class="form-control bg-light border-start-0 py-2" placeholder="Type to search tasks...">
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-5 col-lg-3">
+                <label for="fromDate" class="form-label filter-label fw-semibold text-secondary small mb-2">
+                    <i class="bi bi-calendar-range me-1 text-primary"></i> From Date
+                </label>
+                <div class="input-group custom-input-group">
+                    <span class="input-group-text bg-light border-end-0 text-muted ps-3">
+                        <i class="bi bi-calendar-event"></i>
+                    </span>
+                    <input type="date" id="fromDate" class="form-control bg-light border-start-0 py-2 custom-date-input">
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-5 col-lg-3">
+                <label for="toDate" class="form-label filter-label fw-semibold text-secondary small mb-2">
+                    <i class="bi bi-calendar-check me-1 text-primary"></i> To Date
+                </label>
+                <div class="input-group custom-input-group">
+                    <span class="input-group-text bg-light border-end-0 text-muted ps-3">
+                        <i class="bi bi-calendar-check"></i>
+                    </span>
+                    <input type="date" id="toDate" class="form-control bg-light border-start-0 py-2 custom-date-input">
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-2 col-lg-1">
+                <button type="button" id="clearFiltersBtn" class="btn btn-clear shadow-sm w-100 py-2 d-flex align-items-center justify-content-center" title="Clear Filters">
+                    <i class="bi bi-trash3 me-2 d-sm-none"></i> <span class="d-sm-none fw-medium">Clear </span><i class="bi bi-x-lg fw-bold"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row g-4">
+        
+        <div class="col-12 col-md-4">
+            <div class="card border-0 rounded-4 custom-stat-card shadow-sm position-relative overflow-hidden bg-white">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="text-uppercase tracking-wider small fw-bold text-muted mb-1">Total Expenses</p>
+                            <h3 class="display-5 fw-bold text-dark mb-0">06</h3>
+                        </div>
+                        <div class="stat-icon-box bg-primary-subtle text-primary rounded-3 p-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-wallet2 fs-3"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-top border-light">
+                        <span class="text-muted small"><i class="bi bi-arrow-right-short me-1"></i>All logged items</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card border-0 rounded-4 custom-stat-card shadow-sm position-relative overflow-hidden bg-white">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="text-uppercase tracking-wider small fw-bold text-muted mb-1">Completed</p>
+                            <h3 class="display-5 fw-bold text-success mb-0">04</h3>
+                        </div>
+                        <div class="stat-icon-box bg-success-subtle text-success rounded-3 p-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-check-circle-fill fs-3"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-top border-light">
+                        <span class="text-success small fw-medium"><i class="bi bi-shield-check me-1"></i>Approved & Paid</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card border-0 rounded-4 custom-stat-card shadow-sm position-relative overflow-hidden bg-white">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="text-uppercase tracking-wider small fw-bold text-muted mb-1">Pending Review</p>
+                            <h3 class="display-5 fw-bold text-warning mb-0">02</h3>
+                        </div>
+                        <div class="stat-icon-box bg-warning-subtle text-warning rounded-3 p-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-clock-history fs-3"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-top border-light">
+                        <span class="text-warning small fw-medium"><i class="bi bi-exclamation-circle me-1"></i>Awaiting approval</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

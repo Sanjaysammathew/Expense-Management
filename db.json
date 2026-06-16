@@ -12,6 +12,19 @@
       "role": "Employee",
       "createdAt": "2026-06-15T14:23:33.959Z",
       "id": "NGunY9yarfE"
+    },
+    {
+      "employeeId": "102",
+      "fullName": "Monisha",
+      "email": "monisha05@gmail.com",
+      "password": "Monisha@05",
+      "dob": "2004-06-16",
+      "department": "IT",
+      "designation": "Manager",
+      "gender": "Female",
+      "role": "Admin",
+      "createdAt": "2026-06-16T04:39:24.761Z",
+      "id": "MOzrNFY5ass"
     }
   ],
   "expenses": [],

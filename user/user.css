@@ -1,0 +1,49 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+#nav-container {
+    background-color: #0033AB;
+}
+
+
+#addBtn {
+    background-color: #0033AB;
+    color: white;
+    border: 1px solid #0033AB;
+    transition: all 0.2s ease-in-out;
+}
+#addBtn:hover {
+    background-color: #002273;
+    border-color: #002273;
+}
+
+
+#restoreBtn {
+    background-color: transparent;
+    color: #0033AB;
+    border: 1px solid #0033AB;
+    transition: all 0.2s ease-in-out;
+}
+#restoreBtn:hover {
+    background-color: #0033AB;
+    color: white;
+}
+
+
+.form-control:focus {
+    border-color: #0033AB;
+    box-shadow: 0 0 0 0.25rem rgba(0, 51, 171, 0.15);
+}
+
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
