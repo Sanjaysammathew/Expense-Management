@@ -396,14 +396,8 @@ function showRestoreBin() {
             <td>${exp.expenseDate}</td>
 
             <td>
-                <span class="badge bg-danger">
-                    Deleted
-                </span>
-            </td>
-
-            <td>
                 <button
-                    class="btn btn-success btn-sm"
+                    class="btn btn-danger btn-sm"
                     onclick="restoreExpense('${exp.id}')">
                     Restore
                 </button>
