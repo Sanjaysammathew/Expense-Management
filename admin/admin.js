@@ -54,6 +54,7 @@ function renderExpenses(expenses) {
 
     tbody.innerHTML = expenses.map(exp => `
         <tr>
+         <td>${exp.employeeId}</td>
             <td>${exp.title}</td>
             <td>${exp.category}</td>
             <td>₹${exp.amount}</td>
@@ -69,13 +70,14 @@ function renderExpenses(expenses) {
             </td>
             <td>
                 <button
-                    class="btn btn-sm btn-primary"
-                    onclick="viewExpense('${exp.id}')">
-                    View
+                    class="btn btn-sm btn-primary rounded-pill"
+                    onclick="viewExpense('${exp.id}')" data-bs-toggle="tooltip" title="View Expense">
+                      <i class="bi bi-eye"></i>
                 </button>
             </td>
         </tr>
     `).join('');
+     enableTooltips()
 }
 
 function viewExpense(id) {
@@ -416,6 +418,12 @@ document.getElementById("saveDecisionBtn")
         });
     }
 });
+function enableTooltips(){
+    const tooltipTriggerList=document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    [...tooltipTriggerList].forEach(el =>{
+     new bootstrap.Tooltip(el);
+    })
+}
 
 document.getElementById("logoutBtn").addEventListener("click",() =>{
     window.location.href="../landing/index.html"

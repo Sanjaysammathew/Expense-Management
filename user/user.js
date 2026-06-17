@@ -47,7 +47,6 @@ document.getElementById("expenseForm").addEventListener("submit", async function
       "amount": document.getElementById("expAmount").value.trim(),
       "expenseDate": document.getElementById("expDate").value.trim(),
       "description": document.getElementById("expDesc").value.trim(),
-      "priority": document.getElementById("expPriority").value.trim(),
       "status": "Pending",
        "isDeleted": false, 
       "remark": "",
@@ -138,16 +137,40 @@ function renderExpenses(expenses) {
                     ${exp.status}
                 </span>
             </td>
-            <td>
-                <button
-                    class="btn btn-sm btn-primary"
-                    onclick="viewExpense('${exp.id}')">
-                    View
-                </button>
-            </td>
+          <td>
+    <div class="d-flex justify-content-center gap-2">
+
+        <button
+            class="btn btn-sm btn-warning rounded-pill"
+            onclick="editExpense('${exp.id}')"
+            data-bs-toggle="tooltip"
+            title="Update Expense">
+            <i class="bi bi-pencil"></i>
+        </button>
+
+        <button
+            class="btn btn-sm btn-danger rounded-pill"
+            onclick="deleteExpense('${exp.id}')"
+            data-bs-toggle="tooltip"
+            title="Delete Expense">
+            <i class="bi bi-trash3"></i>
+        </button>
+
+        <button
+            class="btn btn-sm btn-primary rounded-pill"
+            onclick="viewExpense('${exp.id}')"
+            data-bs-toggle="tooltip"
+            title="View Expense">
+            <i class="bi bi-eye"></i>
+        </button>
+
+    </div>
+</td>
         </tr>
     `).join('');
+    enableTooltips();
 }
+
 
 function viewExpense(id) {
 
@@ -228,7 +251,6 @@ function editExpense(id) {
     document.getElementById("editAmount").value = expense.amount;
     document.getElementById("editDate").value = expense.expenseDate;
     document.getElementById("editDesc").value = expense.description;
-    document.getElementById("editPriority").value = expense.priority;
 
     bootstrap.Modal.getInstance(
         document.getElementById("viewModal")
@@ -262,9 +284,6 @@ document
 
         description:
             document.getElementById("editDesc").value,
-
-        priority:
-            document.getElementById("editPriority").value,
 
         updatedAt:
             new Date().toISOString()
@@ -497,6 +516,14 @@ document
     );
 });
 
+function enableTooltips() {
+    const tooltipTriggerList =
+        document.querySelectorAll('[data-bs-toggle="tooltip"]');
+
+    [...tooltipTriggerList].forEach(el => {
+        new bootstrap.Tooltip(el);
+    });
+}
 
 document.getElementById("logoutBtn").addEventListener("click",() =>{
     window.location.href="../landing/index.html"
