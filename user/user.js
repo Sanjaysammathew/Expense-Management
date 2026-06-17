@@ -120,6 +120,10 @@ loadExpenses();
 
 function renderExpenses(expenses) {
 
+        expenses.sort((a, b) =>
+        new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
     const tbody = document.getElementById("expenseTableBody");
 
     tbody.innerHTML = expenses.map(exp => `
@@ -191,8 +195,10 @@ function viewExpense(id) {
         <p><b>Date:</b> ${expense.expenseDate}</p>
         <p><b>Description:</b> ${expense.description}</p>
         <p><b>Remark:</b> ${expense.remark}</p>
-         <p><b>Remark:</b> ${expense.approvedBy}</p>
-          <p><b>Remark:</b> ${expense.decisionDate}</p>
+         <p><b>Approved By:</b> ${expense.approvedBy}</p>
+        <p><b>Decision Date:</b> ${
+    expense.decisionDate?.split("T")[0] || "N/A"
+}</p>
         <p><b>Status:</b> ${expense.status}</p>
         ${
           expense.status === "Pending"

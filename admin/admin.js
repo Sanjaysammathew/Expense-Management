@@ -50,6 +50,11 @@ loadExpenses();
 
 function renderExpenses(expenses) {
 
+          expenses.sort((a, b) =>
+        new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
+
     const tbody = document.getElementById("expenseTableBody");
 
     tbody.innerHTML = expenses.map(exp => `
@@ -92,7 +97,6 @@ function viewExpense(id) {
         <p><b>Amount:</b> ₹${expense.amount}</p>
         <p><b>Date:</b> ${expense.expenseDate}</p>
         <p><b>Description:</b> ${expense.description}</p>
-        <p><b>Priority:</b> ${expense.priority}</p>
         <p><b>Status:</b> ${expense.status}</p>
         ${
           expense.status === "Pending"
@@ -159,7 +163,6 @@ function editExpense(id) {
     document.getElementById("editAmount").value = expense.amount;
     document.getElementById("editDate").value = expense.expenseDate;
     document.getElementById("editDesc").value = expense.description;
-    document.getElementById("editPriority").value = expense.priority;
 
     bootstrap.Modal.getInstance(
         document.getElementById("viewModal")
@@ -194,8 +197,6 @@ document
         description:
             document.getElementById("editDesc").value,
 
-        priority:
-            document.getElementById("editPriority").value,
 
         updatedAt:
             new Date().toISOString()
