@@ -7,6 +7,11 @@ document.getElementById("expDate").max =
     document.getElementById("editDate").max =
     new Date().toISOString().split("T")[0];
 
+    const today = new Date().toISOString().split("T")[0];
+
+document.getElementById("fromDate").max = today;
+document.getElementById("toDate").max = today;
+
 myModalEl.addEventListener('show.bs.modal', () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (currentUser) {
@@ -197,27 +202,27 @@ function renderExpenses(expenses) {
       <td>
     <div class="d-flex justify-content-center gap-2">
 
-        ${
-            exp.status === "Pending"
-            ? `
-            <button
-                class="btn btn-sm btn-warning rounded-pill"
-                onclick="editExpense('${exp.id}')"
-                data-bs-toggle="tooltip"
-                title="Update Expense">
-                <i class="bi bi-pencil"></i>
-            </button>
+       <button
+    class="btn btn-sm btn-warning rounded-pill
+    ${exp.status === 'Completed' ? 'disabled' : ''}"
+    onclick="${exp.status === 'Pending' ? `editExpense('${exp.id}')` : ''}"
+    data-bs-toggle="tooltip"
+    title="${exp.status === 'Completed'
+        ? 'Completed tasks cannot be updated'
+        : 'Update Expense'}">
+    <i class="bi bi-pencil"></i>
+</button>
 
-            <button
-                class="btn btn-sm btn-danger rounded-pill"
-                onclick="deleteExpense('${exp.id}')"
-                data-bs-toggle="tooltip"
-                title="Delete Expense">
-                <i class="bi bi-trash3"></i>
-            </button>
-            `
-            : ''
-        }
+<button
+    class="btn btn-sm btn-danger rounded-pill
+    ${exp.status === 'Completed' ? 'disabled' : ''}"
+    onclick="${exp.status === 'Pending' ? `deleteExpense('${exp.id}')` : ''}"
+    data-bs-toggle="tooltip"
+    title="${exp.status === 'Completed'
+        ? 'Completed tasks cannot be deleted'
+        : 'Delete Expense'}">
+    <i class="bi bi-trash3"></i>
+</button>
 
         <button
             class="btn btn-sm btn-primary rounded-pill"
@@ -592,6 +597,26 @@ function applyFilters() {
     const toDate = document
         .getElementById("toDate")
         .value;
+
+        const today = new Date().toISOString().split("T")[0];
+
+if (fromDate && fromDate > today) {
+    Swal.fire({
+        icon: "error",
+        title: "Invalid Date",
+        text: "Future dates are not allowed."
+    });
+    return;
+}
+
+if (toDate && toDate > today) {
+    Swal.fire({
+        icon: "error",
+        title: "Invalid Date",
+        text: "Future dates are not allowed."
+    });
+    return;
+}
 
     let filtered = allExpenses.filter(exp =>
         exp.employeeId === currentUser.employeeId &&
