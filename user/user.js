@@ -161,7 +161,7 @@ function viewExpense(id) {
         <p><b>Amount:</b> ₹${expense.amount}</p>
         <p><b>Date:</b> ${expense.expenseDate}</p>
         <p><b>Description:</b> ${expense.description}</p>
-        <p><b>Priority:</b> ${expense.priority}</p>
+        <p><b>Remark:</b> ${expense.remark}</p>
         <p><b>Status:</b> ${expense.status}</p>
         ${
           expense.status === "Pending"

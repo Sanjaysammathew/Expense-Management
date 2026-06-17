@@ -64,13 +64,13 @@
       "expenseDate": "2025-05-14",
       "description": "Went to paris",
       "priority": "Medium",
-      "status": "Pending",
+      "status": "Completed",
       "isDeleted": false,
-      "remark": "",
-      "approvedBy": "",
-      "decisionDate": "",
+      "remark": "it is approved",
+      "approvedBy": "Monisha",
+      "decisionDate": "2026-06-17T04:45:07.257Z",
       "createdAt": "2026-06-16T06:51:39.814Z",
-      "updatedAt": "2026-06-16T13:22:22.954Z",
+      "updatedAt": "2026-06-17T04:45:07.257Z",
       "id": "WpWATONgsy0"
     },
     {
@@ -84,12 +84,12 @@
       "description": "Went to Annapoorna ate meals",
       "priority": "Medium",
       "status": "Pending",
-      "isDeleted": false,
+      "isDeleted": true,
       "remark": "",
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-16T10:40:33.984Z",
-      "updatedAt": "2026-06-16T10:40:33.984Z",
+      "updatedAt": "2026-06-17T04:45:47.986Z",
       "id": "VAgC7Mcrdq4"
     },
     {
@@ -103,12 +103,12 @@
       "description": "travel charges and food charges",
       "priority": "Low",
       "status": "Pending",
-      "isDeleted": true,
+      "isDeleted": false,
       "remark": "",
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-16T13:25:30.435Z",
-      "updatedAt": "2026-06-16T13:25:50.810Z",
+      "updatedAt": "2026-06-17T04:45:53.025Z",
       "id": "IlLBlnWHqus"
     }
   ],
