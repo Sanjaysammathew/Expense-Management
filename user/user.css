@@ -47,3 +47,15 @@ body {
     transform: translateY(-3px);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
 }
+
+#button-container button{
+    transition: all .25s ease;
+}
+
+#button-container .active{
+   background: #212529;
+    color: #fff !important;
+    border-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(32,201,151,.35);
+}

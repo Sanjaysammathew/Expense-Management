@@ -1,6 +1,12 @@
 const myModalEl = document.getElementById('addModal');
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+document.getElementById("expDate").max =
+    new Date().toISOString().split("T")[0];
+
+    document.getElementById("editDate").max =
+    new Date().toISOString().split("T")[0];
+
 myModalEl.addEventListener('show.bs.modal', () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (currentUser) {
@@ -38,6 +44,51 @@ document.getElementById("expenseForm").addEventListener("submit", async function
 
   try {
 
+    const expenseDate = document.getElementById("expDate").value;
+const today = new Date().toISOString().split("T")[0];
+
+if (expenseDate > today) {
+    Swal.fire({
+        icon: "error",
+        title: "Invalid Date",
+        text: "Future dates are not allowed."
+    });
+    return;
+}
+
+const year = new Date(expenseDate).getFullYear();
+
+if (year < 1920) {
+    Swal.fire({
+        icon: "error",
+        title: "Invalid Date",
+        text: "Year must be 1920 or later."
+    });
+    return;
+}
+
+const title = document.getElementById("expTitle").value.trim();
+const category = document.getElementById("expCategory").value.trim();
+const amount = document.getElementById("expAmount").value.trim();
+const description = document.getElementById("expDesc").value.trim();
+
+if (!title || !category || !amount || !expenseDate || !description) {
+    Swal.fire({
+        icon: "error",
+        title: "Missing Fields",
+        text: "All fields are required."
+    });
+    return;
+}
+
+if (Number(amount) <= 0) {
+    Swal.fire({
+        icon: "error",
+        title: "Invalid Amount",
+        text: "Amount must be greater than 0."
+    });
+    return;
+}
     const data = {
       "employeeId": currentUser.employeeId,
       "employeeName": currentUser.fullName,
@@ -69,6 +120,8 @@ document.getElementById("expenseForm").addEventListener("submit", async function
     }
 
     await response.json();
+
+    await loadExpenses();
 
     await Swal.fire({
       title: "Success!",
@@ -233,6 +286,11 @@ document.querySelectorAll("#button-container button")
 
     btn.addEventListener("click", () => {
 
+        document.querySelectorAll("#button-container button")
+    .forEach(b => b.classList.remove("active"));
+
+btn.classList.add("active");
+
         const status = btn.textContent.trim();
 
         if (status === "All") {
@@ -268,7 +326,7 @@ function editExpense(id) {
 
     bootstrap.Modal.getInstance(
         document.getElementById("viewModal")
-    ).hide();
+    )?.hide();
 
     new bootstrap.Modal(
         document.getElementById("editModal")
@@ -281,6 +339,51 @@ document
 
     const id =
         document.getElementById("editId").value;
+
+const editDate = document.getElementById("editDate").value;
+const today = new Date().toISOString().split("T")[0];
+
+if (editDate > today) {
+    Swal.fire({
+        icon: "error",
+        title: "Invalid Date",
+        text: "Future dates are not allowed."
+    });
+    return;
+}
+
+const year = new Date(editDate).getFullYear();
+
+if (year < 1920) {
+    Swal.fire({
+        icon: "error",
+        title: "Invalid Date"
+    });
+    return;
+}
+
+   const title = document.getElementById("editTitle").value.trim();
+    const category = document.getElementById("editCategory").value.trim();
+    const amount = document.getElementById("editAmount").value.trim();
+    const description = document.getElementById("editDesc").value.trim();
+
+    if (!title || !category || !amount || !editDate || !description) {
+        Swal.fire({
+            icon: "error",
+            title: "Missing Fields",
+            text: "All fields are required."
+        });
+        return;
+    }
+
+    if (Number(amount) <= 0) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Amount",
+            text: "Amount must be greater than 0."
+        });
+        return;
+    }
 
     const updatedExpense = {
 
@@ -410,7 +513,9 @@ document
 .addEventListener("click", showRestoreBin);
 
 function showRestoreBin() {
-
+    
+        document.querySelectorAll("#button-container button")
+        .forEach(btn => btn.classList.remove("active"));
     const deletedExpenses = allExpenses.filter(
             exp => exp.employeeId === currentUser.employeeId &&
     exp.isDeleted
@@ -539,6 +644,30 @@ function enableTooltips() {
     });
 }
 
-document.getElementById("logoutBtn").addEventListener("click",() =>{
-    window.location.href="../landing/index.html"
-})
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+
+    const result = await Swal.fire({
+        title: "Logout?",
+        text: "Are you sure you want to logout?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#dc3545"
+    });
+
+    if (result.isConfirmed) {
+
+        localStorage.removeItem("currentUser");
+
+        await Swal.fire({
+            icon: "success",
+            title: "Logged Out",
+            text: "You have been logged out successfully.",
+            timer: 1500,
+            showConfirmButton: false
+        });
+
+        window.location.href = "../landing/index.html";
+    }
+});

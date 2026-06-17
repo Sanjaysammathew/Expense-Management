@@ -149,7 +149,7 @@
       "title": "Travel",
       "category": "Travel",
       "amount": "3000",
-      "expenseDate": "2026-06-17",
+      "expenseDate": "2025-06-17",
       "description": "Went to chennai to attend company conference",
       "status": "Pending",
       "isDeleted": false,
@@ -157,7 +157,7 @@
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-17T06:55:14.891Z",
-      "updatedAt": "2026-06-17T06:56:53.975Z",
+      "updatedAt": "2026-06-17T10:40:58.879Z",
       "id": "M8Xg7_BQTfg"
     },
     {
@@ -169,13 +169,13 @@
       "amount": "3000",
       "expenseDate": "2026-06-17",
       "description": "",
-      "status": "Pending",
+      "status": "Completed",
       "isDeleted": false,
-      "remark": "",
-      "approvedBy": "",
-      "decisionDate": "",
+      "remark": "it is approved",
+      "approvedBy": "Monisha",
+      "decisionDate": "2026-06-17T09:44:46.940Z",
       "createdAt": "2026-06-17T07:25:48.442Z",
-      "updatedAt": "2026-06-17T07:25:48.442Z",
+      "updatedAt": "2026-06-17T09:44:46.940Z",
       "id": "xe66W7GwUUA"
     },
     {
@@ -231,6 +231,24 @@
       "createdAt": "2026-06-17T07:29:02.279Z",
       "updatedAt": "2026-06-17T07:29:27.910Z",
       "id": "67t2yGxfiq8"
+    },
+    {
+      "employeeId": "101",
+      "employeeName": "Sanjay Sam Mathew",
+      "department": "HR",
+      "title": "food expense",
+      "category": "Meals",
+      "amount": "500",
+      "expenseDate": "2025-07-20",
+      "description": "Ate food in the restarunt for the meeting",
+      "status": "Pending",
+      "isDeleted": false,
+      "remark": "",
+      "approvedBy": "",
+      "decisionDate": "",
+      "createdAt": "2026-06-17T10:44:54.826Z",
+      "updatedAt": "2026-06-17T10:51:08.065Z",
+      "id": "mU8NkCtD2ME"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

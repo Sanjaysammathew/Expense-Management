@@ -131,6 +131,12 @@ document.querySelectorAll("#button-container button")
 
     btn.addEventListener("click", () => {
 
+
+        document.querySelectorAll("#button-container button")
+            .forEach(b => b.classList.remove("active"));
+
+        btn.classList.add("active");
+
         const status = btn.textContent.trim();
 
         if (status === "All") {
@@ -426,6 +432,30 @@ function enableTooltips(){
     })
 }
 
-document.getElementById("logoutBtn").addEventListener("click",() =>{
-    window.location.href="../landing/index.html"
-})
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+
+    const result = await Swal.fire({
+        title: "Logout?",
+        text: "Are you sure you want to logout?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#dc3545"
+    });
+
+    if (result.isConfirmed) {
+
+        localStorage.removeItem("currentUser");
+
+        await Swal.fire({
+            icon: "success",
+            title: "Logged Out",
+            text: "You have been logged out successfully.",
+            timer: 1500,
+            showConfirmButton: false
+        });
+
+        window.location.href = "../landing/index.html";
+    }
+});

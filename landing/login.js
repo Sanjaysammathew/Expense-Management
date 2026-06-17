@@ -86,23 +86,45 @@ function validateConfirmPassword() {
 }
 
 function validateDOB() {
+
     const dobValue = $("#date").val();
+
     if (!dobValue) {
         setError("#date", "error-date", "Date of birth is required");
         return false;
     }
+
     const dob = new Date(dobValue);
     const today = new Date();
+
+    if (dob > today) {
+        setError("#date", "error-date", "Future dates are not allowed");
+        return false;
+    }
+
+    if (dob.getFullYear() < 1920) {
+        setError("#date", "error-date", "Enter a valid year");
+        return false;
+    }
+
     let age = today.getFullYear() - dob.getFullYear();
+
     const monthDiff = today.getMonth() - dob.getMonth();
     const dayDiff = today.getDate() - dob.getDate();
+
     if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
         age--;
     }
+
     if (age < 21) {
-        setError("#date", "error-date", "You must be at least 21 years old to register");
+        setError(
+            "#date",
+            "error-date",
+            "You must be at least 21 years old to register"
+        );
         return false;
     }
+
     clearError("#date", "error-date");
     return true;
 }
@@ -249,6 +271,8 @@ async function loginUser() {
 
         localStorage.setItem("currentUser", JSON.stringify(user));
 
+
+
         Swal.fire({
             icon: "success",
             title: "Welcome Back!",
@@ -284,3 +308,8 @@ $("#designation").on("input", validateDesignation);
 
 $("#registerModal .btn-primary").click(registerUser);
 $("#loginModal .btn-primary").click(loginUser);
+
+$("#loginModal").on("show.bs.modal", function () {
+    $("#name").val("");
+    $("#password").val("");
+});
