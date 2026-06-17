@@ -70,7 +70,7 @@
       "approvedBy": "Monisha",
       "decisionDate": "2026-06-17T04:45:07.257Z",
       "createdAt": "2026-06-16T06:51:39.814Z",
-      "updatedAt": "2026-06-17T04:45:07.257Z",
+      "updatedAt": "2026-06-17T06:47:30.654Z",
       "id": "WpWATONgsy0"
     },
     {
@@ -89,7 +89,7 @@
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-16T10:40:33.984Z",
-      "updatedAt": "2026-06-17T04:45:47.986Z",
+      "updatedAt": "2026-06-17T06:54:21.844Z",
       "id": "VAgC7Mcrdq4"
     },
     {
@@ -128,8 +128,25 @@
       "createdAt": "2026-06-17T05:49:06.346Z",
       "updatedAt": "2026-06-17T05:49:06.346Z",
       "id": "inIj2uwfthA"
+    },
+    {
+      "employeeId": "101",
+      "employeeName": "Sanjay Sam Mathew",
+      "department": "HR",
+      "title": "Travel",
+      "category": "Travel",
+      "amount": "3000",
+      "expenseDate": "2026-06-17",
+      "description": "Went to chennai to attend company conference",
+      "status": "Pending",
+      "isDeleted": false,
+      "remark": "",
+      "approvedBy": "",
+      "decisionDate": "",
+      "createdAt": "2026-06-17T06:55:14.891Z",
+      "updatedAt": "2026-06-17T06:56:53.975Z",
+      "id": "M8Xg7_BQTfg"
     }
   ],
-  "notifications": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

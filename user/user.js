@@ -137,24 +137,30 @@ function renderExpenses(expenses) {
                     ${exp.status}
                 </span>
             </td>
-          <td>
+      <td>
     <div class="d-flex justify-content-center gap-2">
 
-        <button
-            class="btn btn-sm btn-warning rounded-pill"
-            onclick="editExpense('${exp.id}')"
-            data-bs-toggle="tooltip"
-            title="Update Expense">
-            <i class="bi bi-pencil"></i>
-        </button>
+        ${
+            exp.status === "Pending"
+            ? `
+            <button
+                class="btn btn-sm btn-warning rounded-pill"
+                onclick="editExpense('${exp.id}')"
+                data-bs-toggle="tooltip"
+                title="Update Expense">
+                <i class="bi bi-pencil"></i>
+            </button>
 
-        <button
-            class="btn btn-sm btn-danger rounded-pill"
-            onclick="deleteExpense('${exp.id}')"
-            data-bs-toggle="tooltip"
-            title="Delete Expense">
-            <i class="bi bi-trash3"></i>
-        </button>
+            <button
+                class="btn btn-sm btn-danger rounded-pill"
+                onclick="deleteExpense('${exp.id}')"
+                data-bs-toggle="tooltip"
+                title="Delete Expense">
+                <i class="bi bi-trash3"></i>
+            </button>
+            `
+            : ''
+        }
 
         <button
             class="btn btn-sm btn-primary rounded-pill"
@@ -185,6 +191,8 @@ function viewExpense(id) {
         <p><b>Date:</b> ${expense.expenseDate}</p>
         <p><b>Description:</b> ${expense.description}</p>
         <p><b>Remark:</b> ${expense.remark}</p>
+         <p><b>Remark:</b> ${expense.approvedBy}</p>
+          <p><b>Remark:</b> ${expense.decisionDate}</p>
         <p><b>Status:</b> ${expense.status}</p>
         ${
           expense.status === "Pending"
