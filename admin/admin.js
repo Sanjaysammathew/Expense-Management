@@ -1,7 +1,10 @@
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-
+if (currentUser) {
+    const firstName = currentUser.fullName.split(" ")[0];
+    document.getElementById("navUsername").textContent = firstName;
+}
 
 $(document).ready(function () {
   $('#userProfileOffcanvas').on('show.bs.offcanvas', function () {
@@ -63,7 +66,7 @@ function renderExpenses(expenses) {
             <td>${exp.title}</td>
             <td>${exp.category}</td>
             <td>₹${exp.amount}</td>
-            <td>${exp.expenseDate}</td>
+            <td>${formatDate(exp.expenseDate)}</td>
             <td>
                 <span class="badge ${
                     exp.status === "Completed"
@@ -89,37 +92,123 @@ function viewExpense(id) {
 
     const expense = allExpenses.find(x => x.id === id);
 
-    document.getElementById("expenseDetails").innerHTML = `
-        <p><b>Employee:</b> ${expense.employeeName}</p>
-        <p><b>Department:</b> ${expense.department}</p>
-        <p><b>Title:</b> ${expense.title}</p>
-        <p><b>Category:</b> ${expense.category}</p>
-        <p><b>Amount:</b> ₹${expense.amount}</p>
-        <p><b>Date:</b> ${expense.expenseDate}</p>
-        <p><b>Description:</b> ${expense.description}</p>
-        <p><b>Status:</b> ${expense.status}</p>
-        ${
-          expense.status === "Pending"
-          ?
-          `
-          <div class="mt-3">
-           <button
-        class="btn btn-success"
-        onclick="openDecisionModal('${expense.id}','Completed')">
-        Approve
-    </button>
+ document.getElementById("expenseDetails").innerHTML = `
+<div class="container-fluid">
 
-              <button
-        class="btn btn-danger"
-        onclick="openDecisionModal('${expense.id}','Rejected')">
-        Reject
-    </button>
-          </div>
-          `
-          :
-          ''
-        }
-    `;
+    <div class="text-center mb-4">
+
+        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center shadow"
+             style="width:80px;height:80px;">
+            <i class="bi bi-receipt fs-2"></i>
+        </div>
+
+        <h4 class="fw-bold mt-3">${expense.title}</h4>
+
+        <span class="badge ${
+            expense.status === "Completed"
+                ? "bg-success"
+                : "bg-warning text-dark"
+        } px-4 py-2 rounded-pill">
+            ${expense.status}
+        </span>
+
+    </div>
+
+    <div class="card border-0 shadow rounded-4">
+        <div class="card-body p-4">
+
+            <div class="row text-center g-4">
+
+                <div class="col-md-6">
+                    <small class="text-muted">Employee</small>
+                    <h6 class="fw-bold">${expense.employeeName}</h6>
+                </div>
+
+                <div class="col-md-6">
+                    <small class="text-muted">Department</small>
+                    <h6 class="fw-bold">${expense.department}</h6>
+                </div>
+
+                <div class="col-md-6">
+                    <small class="text-muted">Category</small>
+                    <h6 class="fw-bold">${expense.category}</h6>
+                </div>
+
+                <div class="col-md-6">
+                    <small class="text-muted">Amount</small>
+                    <h5 class="fw-bold text-success">
+                        ₹${expense.amount}
+                    </h5>
+                </div>
+
+                <div class="col-12">
+                    <small class="text-muted">Expense Date</small>
+                    <h6 class="fw-bold">${expense.expenseDate}</h6>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="mb-3">
+                <label class="fw-semibold text-secondary mb-2">
+                    Description
+                </label>
+
+                <div class="bg-light rounded-3 p-3">
+                    ${expense.description}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    ${
+        expense.status === "Pending"
+        ? `
+        <div class="d-flex justify-content-end gap-3 mt-4">
+
+            <button
+                class="btn btn-success rounded-pill px-4 shadow-sm"
+                onclick="openDecisionModal('${expense.id}','Completed')">
+                <i class="bi bi-check-circle me-1"></i>
+                Approve
+            </button>
+
+            <button
+                class="btn btn-danger rounded-pill px-4 shadow-sm"
+                onclick="openDecisionModal('${expense.id}','Rejected')">
+                <i class="bi bi-x-circle me-1"></i>
+                Reject
+            </button>
+
+        </div>
+        `
+        : `
+        <div class="card border-0 shadow-sm mt-4">
+            <div class="card-body">
+
+                <div class="row text-center">
+
+                    <div class="col-md-6">
+                        <small class="text-muted">Approved By</small>
+                        <h6>${expense.approvedBy || "N/A"}</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted">Remark</small>
+                        <h6>${expense.remark || "N/A"}</h6>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        `
+    }
+
+</div>
+`;
 
     new bootstrap.Modal(
       document.getElementById("viewModal")
@@ -459,3 +548,13 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
         window.location.href = "../landing/index.html";
     }
 });
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+}

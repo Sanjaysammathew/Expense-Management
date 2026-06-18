@@ -81,3 +81,7 @@ body {
     justify-content: center;
     box-shadow: 0 4px 8px rgba(0, 51, 171, 0.2);
 }
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}

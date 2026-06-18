@@ -13,7 +13,10 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" id="nav-container">
     <div class="container">
-        <a class="navbar-brand fw-bold text-white fs-4" href="#">Claimly</a>
+                <a class="navbar-brand fw-bold text-white fs-4 d-flex align-items-center" href="../landing/index.html">
+    <i class="bi bi-receipt-cutoff me-2 fs-3"></i>
+    <span>Claimly</span>
+</a>
         
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navs" aria-controls="navs" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,8 +25,11 @@
         <div class="navbar-collapse collapse" id="navs">
             <div class="navbar-nav ms-auto align-items-center flex-row justify-content-end gap-2 mt-2 mt-lg-0">
                 <div class="nav-item">
-               <button class="btn nav-icon-btn text-white p-2" id="userProfileBtn" title="User Profile" data-bs-toggle="offcanvas" data-bs-target="#userProfileOffcanvas">
-    <i class="bi bi-person-circle fs-5"></i>   Profile
+               <button class="btn nav-icon-btn text-white p-2"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#userProfileOffcanvas">
+    <i class="bi bi-person-circle me-1"></i>
+    Hi, <span id="navUsername">User</span>
 </button>
                 </div>
             </div>

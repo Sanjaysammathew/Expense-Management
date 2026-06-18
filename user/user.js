@@ -43,6 +43,10 @@ $(document).ready(function () {
 });
 
 
+const firstName = currentUser.fullName.split(" ")[0];
+
+$("#dropdownUsername").text(currentUser.fullName || "User");
+$("#navUsername").text(firstName);
 
 document.getElementById("expenseForm").addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -66,8 +70,7 @@ const year = new Date(expenseDate).getFullYear();
 if (year < 1920) {
     Swal.fire({
         icon: "error",
-        title: "Invalid Date",
-        text: "Year must be 1920 or later."
+        title: "Invalid Date"
     });
     return;
 }
@@ -189,7 +192,7 @@ function renderExpenses(expenses) {
             <td>${exp.title}</td>
             <td>${exp.category}</td>
             <td>₹${exp.amount}</td>
-            <td>${exp.expenseDate}</td>
+            <td>${formatDate(exp.expenseDate)}</td>
             <td>
                 <span class="badge ${
                     exp.status === "Completed"
@@ -244,43 +247,125 @@ function viewExpense(id) {
 
     const expense = allExpenses.find(x => x.id === id);
 
-    document.getElementById("expenseDetails").innerHTML = `
-        <p><b>Employee:</b> ${expense.employeeName}</p>
-        <p><b>Department:</b> ${expense.department}</p>
-        <p><b>Title:</b> ${expense.title}</p>
-        <p><b>Category:</b> ${expense.category}</p>
-        <p><b>Amount:</b> ₹${expense.amount}</p>
-        <p><b>Date:</b> ${expense.expenseDate}</p>
-        <p><b>Description:</b> ${expense.description}</p>
-        <p><b>Remark:</b> ${expense.remark}</p>
-         <p><b>Approved By:</b> ${expense.approvedBy}</p>
-        <p><b>Decision Date:</b> ${
-    expense.decisionDate?.split("T")[0] || "N/A"
-}</p>
-        <p><b>Status:</b> ${expense.status}</p>
+  document.getElementById("expenseDetails").innerHTML = `
+<div class="d-flex justify-content-center">
+
+    <div class="w-100" style="max-width:700px;">
+
+        <div class="text-center mb-4">
+
+            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center shadow"
+                style="width:80px;height:80px;">
+                <i class="bi bi-receipt fs-2"></i>
+            </div>
+
+            <h4 class="fw-bold mt-3">${expense.title}</h4>
+
+            <span class="badge ${
+                expense.status === "Completed"
+                    ? "bg-success"
+                    : "bg-warning text-dark"
+            } px-4 py-2 rounded-pill">
+                ${expense.status}
+            </span>
+
+        </div>
+
+        <div class="card border-0 shadow-lg rounded-4">
+            <div class="card-body p-4">
+
+                <div class="row g-4 text-center">
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block">Employee</small>
+                        <h6 class="fw-semibold">${expense.employeeName}</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block">Department</small>
+                        <h6 class="fw-semibold">${expense.department}</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block">Category</small>
+                        <h6 class="fw-semibold">${expense.category}</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block">Amount</small>
+                        <h5 class="text-success fw-bold">
+                            ₹${expense.amount}
+                        </h5>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block">Expense Date</small>
+                        <h6 class="fw-semibold">${expense.expenseDate}</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted d-block">Decision Date</small>
+                        <h6 class="fw-semibold">
+                            ${expense.decisionDate?.split("T")[0] || "N/A"}
+                        </h6>
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <div class="mb-4">
+                    <label class="fw-semibold text-muted mb-2">
+                        Description
+                    </label>
+                    <div class="bg-light p-3 rounded-3 text-center">
+                        ${expense.description}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="fw-semibold text-muted mb-2">
+                        Remark
+                    </label>
+                    <div class="bg-light p-3 rounded-3 text-center">
+                        ${expense.remark || "No remarks available"}
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <small class="text-muted d-block">Approved By</small>
+                    <h6 class="fw-semibold">
+                        ${expense.approvedBy || "N/A"}
+                    </h6>
+                </div>
+
+            </div>
+        </div>
+
         ${
-          expense.status === "Pending"
-          ?
-          `
-          <div class="mt-3">
-              <button
-                  class="btn btn-warning"
-                  onclick="editExpense('${expense.id}')">
-                  Update
-              </button>
+            expense.status === "Pending"
+            ? `
+            <div class="d-flex justify-content-end gap-3 mt-4">
+                <button class="btn btn-warning px-4 rounded-pill"
+                        onclick="editExpense('${expense.id}')">
+                    <i class="bi bi-pencil-square me-1"></i>
+                    Update
+                </button>
 
-              <button
-                  class="btn btn-danger"
-                  onclick="deleteExpense('${expense.id}')">
-                  Delete
-              </button>
-          </div>
-          `
-          :
-          ''
+                <button class="btn btn-danger px-4 rounded-pill"
+                        onclick="deleteExpense('${expense.id}')">
+                    <i class="bi bi-trash3 me-1"></i>
+                    Delete
+                </button>
+            </div>
+            `
+            : ''
         }
-    `;
 
+    </div>
+
+</div>
+`;
     new bootstrap.Modal(
       document.getElementById("viewModal")
     ).show();
@@ -600,24 +685,6 @@ function applyFilters() {
 
         const today = new Date().toISOString().split("T")[0];
 
-if (fromDate && fromDate > today) {
-    Swal.fire({
-        icon: "error",
-        title: "Invalid Date",
-        text: "Future dates are not allowed."
-    });
-    return;
-}
-
-if (toDate && toDate > today) {
-    Swal.fire({
-        icon: "error",
-        title: "Invalid Date",
-        text: "Future dates are not allowed."
-    });
-    return;
-}
-
     let filtered = allExpenses.filter(exp =>
         exp.employeeId === currentUser.employeeId &&
         !exp.isDeleted
@@ -696,3 +763,13 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
         window.location.href = "../landing/index.html";
     }
 });
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+}

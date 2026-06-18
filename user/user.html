@@ -13,7 +13,11 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" id="nav-container">
     <div class="container">
-        <a class="navbar-brand fw-bold text-white fs-4" href="#">Claimly</a>
+      
+        <a class="navbar-brand fw-bold text-white fs-4 d-flex align-items-center" href="../landing/index.html">
+    <i class="bi bi-receipt-cutoff me-2 fs-3"></i>
+    <span>Claimly</span>
+</a>
         
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navs" aria-controls="navs" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,8 +26,12 @@
         <div class="navbar-collapse collapse" id="navs">
             <div class="navbar-nav ms-auto align-items-center flex-row justify-content-end gap-2 mt-2 mt-lg-0">
                 <div class="nav-item">
-               <button class="btn nav-icon-btn text-white p-2" id="userProfileBtn" title="User Profile" data-bs-toggle="offcanvas" data-bs-target="#userProfileOffcanvas">
-    <i class="bi bi-person-circle fs-5"></i>    Profile
+               <button class="btn nav-icon-btn text-white p-2"
+        id="userProfileBtn"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#userProfileOffcanvas">
+    <i class="bi bi-person-circle fs-5 me-1"></i>
+    Hi, <span id="navUsername">User</span>
 </button>
                 </div>
             </div>
@@ -193,13 +201,17 @@
 </div>
 
 <div class="modal fade" id="viewModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content" >
 
-            <div class="modal-header">
-                <h5>Expense Details</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
+        <div class="modal-header bg-primary text-white">
+    <h5 class="modal-title">
+        <i class="bi bi-eye-fill me-2"></i>
+        Expense Details
+    </h5>
+    <button class="btn-close btn-close-white"
+            data-bs-dismiss="modal"></button>
+</div>
 
             <div class="modal-body" id="expenseDetails">
             </div>
@@ -208,51 +220,103 @@
     </div>
 </div>
 
-<div class="modal fade" id="editModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
 
-            <div class="modal-header">
-                <h5>Edit Expense</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
+            <div class="modal-header text-white border-0"
+                style="background: linear-gradient(135deg, #0d6efd, #4f8cff);">
+
+                <h5 class="modal-title fw-bold">
+                    <i class="bi bi-pencil-square me-2"></i>
+                    Edit Expense
+                </h5>
+
+                <button class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body p-4">
 
                 <input type="hidden" id="editId">
 
-                <div class="mb-2">
-                    <label>Title</label>
-                    <input type="text" id="editTitle" class="form-control" required>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-card-text text-primary me-1"></i>
+                            Title
+                        </label>
+                        <input type="text"
+                            id="editTitle"
+                            class="form-control form-control-lg rounded-3">
+                    </div>
+
+                   <div class="col-md-6">
+    <label class="form-label fw-semibold">
+        <i class="bi bi-tags text-primary me-1"></i>
+        Category
+    </label>
+
+    <select id="editCategory"
+            class="form-select form-select rounded-3">
+        <option value="Travel">▼ Travel</option>
+        <option value="Meals">▼ Food</option>
+        <option value="Equipment">▼ Equipment</option>
+    </select>
+</div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-currency-rupee text-success me-1"></i>
+                            Amount
+                        </label>
+                        <input type="number"
+                            id="editAmount"
+                            class="form-control form-control-lg rounded-3">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-calendar-event text-primary me-1"></i>
+                            Expense Date
+                        </label>
+                        <input type="date"
+                            id="editDate"
+                            class="form-control form-control-lg rounded-3">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-chat-left-text text-primary me-1"></i>
+                            Description
+                        </label>
+                        <textarea
+                            id="editDesc"
+                            rows="4"
+                            class="form-control rounded-3"></textarea>
+                    </div>
+
                 </div>
 
-                <div class="mb-2">
-                    <label>Category</label>
-                    <input type="text" id="editCategory" class="form-control" required>
-                </div>
-
-                <div class="mb-2">
-                    <label>Amount</label>
-                    <input type="number" id="editAmount" class="form-control" required>
-                </div>
-
-                <div class="mb-2">
-                    <label>Date</label>
-                   <input type="date" id="editDate" class="form-control" max="" required>
-                </div>
-
-                <div class="mb-2">
-                    <label>Description</label>
-                    <textarea id="editDesc" class="form-control"></textarea>
-                </div>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer border-0 px-4 pb-4">
+
                 <button
-                    class="btn btn-primary"
+                    class="btn btn-light border px-4 rounded-pill"
+                    data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button
+                    class="btn btn-primary px-4 rounded-pill shadow-sm"
                     id="updateExpenseBtn">
+                    <i class="bi bi-check-circle me-1"></i>
                     Update Expense
                 </button>
+
             </div>
 
         </div>
@@ -263,7 +327,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white ">
                 <h5 class="modal-title" id="expenseModalLabel">Submit Expense Claim</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -288,35 +352,36 @@
                             <input type="text" id="empDept" class="form-control bg-light" readonly>
                         </div>
                         <div class="col-md-6">
-                            <label id="expTitleLabel" for="expTitle" class="form-label fw-bold">Expense Title</label>
+                            <label id="expTitleLabel" for="expTitle" class="form-label fw-bold">
+                                Expense Title    <span class="text-danger">*</span></label>
                             <input type="text" id="expTitle" class="form-control" required>
                         </div>
                     </div>
                   
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
-                            <label for="expCategory" class="form-label fw-bold">Category</label>
+                            <label for="expCategory" class="form-label fw-bold">  Category <span class="text-danger">*</span></label>
                             <select id="expCategory" class="form-select">
                                 <option value="Travel">▼ Travel</option>
-                                <option value="Meals">▼ Meals</option>
+                                <option value="Meals">▼ Food</option>
                                 <option value="Equipment">▼ Equipment</option>
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="expAmount" class="form-label fw-bold">Amount</label>
+                            <label for="expAmount" class="form-label fw-bold">  Amount <span class="text-danger">*</span></label>
                             <input type="number" id="expAmount" class="form-control" required>
                         </div>
                     </div>
                   
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
-                            <label for="expDate" class="form-label fw-bold">Expense Date</label>
+                            <label for="expDate" class="form-label fw-bold"> Expense Date  <span class="text-danger">*</span></label>
                             <input type="date" id="expDate" class="form-control" required max=""    >
                         </div>
                     </div>
                   
                     <div class="mb-3">
-                        <label for="expDesc" class="form-label fw-bold">Description</label>
+                        <label for="expDesc" class="form-label fw-bold">  Description <span class="text-danger">*</span></label>
                         <textarea id="expDesc" class="form-control" rows="3" required></textarea>
                     </div>
 
