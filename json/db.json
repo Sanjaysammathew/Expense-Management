@@ -77,6 +77,19 @@
       "role": "Employee",
       "createdAt": "2026-06-18T11:44:54.252Z",
       "id": "EOtHL0eAi44"
+    },
+    {
+      "employeeId": "234",
+      "fullName": "Kalai",
+      "email": "kalai@gmail.com",
+      "password": "Kalai@123",
+      "dob": "2004-02-19",
+      "department": "IT",
+      "designation": "UI/UX Designer",
+      "gender": "Male",
+      "role": "Employee",
+      "createdAt": "2026-06-18T12:33:40.400Z",
+      "id": "Y26Fqw-Vqw8"
     }
   ],
   "expenses": [
@@ -110,12 +123,12 @@
       "description": "Went to Annapoorna ate meals",
       "priority": "Medium",
       "status": "Pending",
-      "isDeleted": true,
+      "isDeleted": false,
       "remark": "",
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-16T10:40:33.984Z",
-      "updatedAt": "2026-06-18T10:53:43.578Z",
+      "updatedAt": "2026-06-18T12:56:07.650Z",
       "id": "VAgC7Mcrdq4"
     },
     {
@@ -278,7 +291,7 @@
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-18T10:48:54.051Z",
-      "updatedAt": "2026-06-18T10:53:48.305Z",
+      "updatedAt": "2026-06-18T13:02:01.897Z",
       "id": "5AcQbUfGtp0"
     },
     {
