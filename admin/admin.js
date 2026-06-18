@@ -63,8 +63,8 @@ function renderExpenses(expenses) {
     tbody.innerHTML = expenses.map(exp => `
         <tr>
          <td>${exp.employeeId}</td>
-            <td>${exp.title}</td>
-            <td>${exp.category}</td>
+            <td>${capitalizeWords(exp.title)}</td>
+            <td>${capitalizeWords(exp.category)}</td>
             <td>₹${exp.amount}</td>
             <td>${formatDate(exp.expenseDate)}</td>
             <td>
@@ -102,7 +102,7 @@ function viewExpense(id) {
             <i class="bi bi-receipt fs-2"></i>
         </div>
 
-        <h4 class="fw-bold mt-3">${expense.title}</h4>
+        <h4 class="fw-bold mt-3">${capitalizeWords(expense.title)}</h4>
 
         <span class="badge ${
             expense.status === "Completed"
@@ -121,7 +121,7 @@ function viewExpense(id) {
 
                 <div class="col-md-6">
                     <small class="text-muted">Employee</small>
-                    <h6 class="fw-bold">${expense.employeeName}</h6>
+                    <h6 class="fw-bold">${capitalizeWords(expense.employeeName)}</h6>
                 </div>
 
                 <div class="col-md-6">
@@ -131,7 +131,7 @@ function viewExpense(id) {
 
                 <div class="col-md-6">
                     <small class="text-muted">Category</small>
-                    <h6 class="fw-bold">${expense.category}</h6>
+                    <h6 class="fw-bold">${capitalizeWords(expense.category)}</h6>
                 </div>
 
                 <div class="col-md-6">
@@ -557,4 +557,10 @@ function formatDate(dateString) {
     const year = date.getFullYear();
 
     return `${day}-${month}-${year}`;
+}
+
+function capitalizeWords(text) {
+    return text
+        ?.toLowerCase()
+        .replace(/\b\w/g, char => char.toUpperCase()) || "";
 }

@@ -189,8 +189,8 @@ function renderExpenses(expenses) {
 
     tbody.innerHTML = expenses.map(exp => `
         <tr>
-            <td>${exp.title}</td>
-            <td>${exp.category}</td>
+            <td>${capitalizeWords(exp.title)}</td>
+            <td>${capitalizeWords(exp.category)}</td>
             <td>₹${exp.amount}</td>
             <td>${formatDate(exp.expenseDate)}</td>
             <td>
@@ -617,9 +617,9 @@ function showRestoreBin() {
 
     tbody.innerHTML = deletedExpenses.map(exp => `
         <tr>
-            <td>${exp.employeeId}</td>
-            <td>${exp.title}</td>
-            <td>${exp.category}</td>
+            <td>${capitalizeWords(expense.title)}</td>
+            <td>${capitalizeWords(expense.category)}</td>
+            <td>${capitalizeWords(expense.employeeName)}</td>
             <td>₹${exp.amount}</td>
             <td>${exp.expenseDate}</td>
 
@@ -772,4 +772,10 @@ function formatDate(dateString) {
     const year = date.getFullYear();
 
     return `${day}-${month}-${year}`;
+}
+
+function capitalizeWords(text) {
+    return text
+        ?.toLowerCase()
+        .replace(/\b\w/g, char => char.toUpperCase()) || "";
 }
