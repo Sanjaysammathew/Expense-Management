@@ -91,19 +91,19 @@ The system provides a centralized platform for tracking expenses and streamlinin
 ```plaintext
 Claimly/
 │
-├── main/
+├── pages/
 │   ├── index.html
-│   ├── style.css
-│   └── login.js
-│
-├── user/
 │   ├── user.html
-│   ├── user.css
-│   └── user.js
+│   └── admin.html
 │
-├── admin/
-│   ├── admin.html
-│   ├── admin.css
+├── styles/
+│   ├── style.css
+│   ├── user.css
+│   └── login.css
+│
+├── script/
+│   ├── login.js
+│   ├── user.js
 │   └── admin.js
 │
 ├── assets/
@@ -187,7 +187,7 @@ json-server --watch db.json --port 3000
 Open:
 
 ```plaintext
-Main/index.html
+pages/index.html
 ```
 
 using Live Server or any local web server.

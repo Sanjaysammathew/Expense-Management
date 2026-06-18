@@ -97,12 +97,12 @@
       "description": "Went to Annapoorna ate meals",
       "priority": "Medium",
       "status": "Pending",
-      "isDeleted": false,
+      "isDeleted": true,
       "remark": "",
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-16T10:40:33.984Z",
-      "updatedAt": "2026-06-18T04:53:15.100Z",
+      "updatedAt": "2026-06-18T10:53:43.578Z",
       "id": "VAgC7Mcrdq4"
     },
     {
@@ -150,14 +150,14 @@
       "category": "Travel",
       "amount": "3000",
       "expenseDate": "2025-06-17",
-      "description": "Went to chennai to attend company conference",
+      "description": "Went to chennai to attend company conferences",
       "status": "Pending",
       "isDeleted": false,
       "remark": "",
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-17T06:55:14.891Z",
-      "updatedAt": "2026-06-17T10:40:58.879Z",
+      "updatedAt": "2026-06-18T10:53:35.394Z",
       "id": "M8Xg7_BQTfg"
     },
     {
@@ -219,7 +219,7 @@
       "employeeName": "Harshini",
       "department": "HR",
       "title": "food expense",
-      "category": "Meals",
+      "category": "Food",
       "amount": "456",
       "expenseDate": "2222-02-11",
       "description": "",
@@ -249,6 +249,24 @@
       "createdAt": "2026-06-17T10:44:54.826Z",
       "updatedAt": "2026-06-17T12:52:32.451Z",
       "id": "mU8NkCtD2ME"
+    },
+    {
+      "employeeId": "101",
+      "employeeName": "Sanjay Sam Mathew",
+      "department": "HR",
+      "title": "food",
+      "category": "Meals",
+      "amount": "2000",
+      "expenseDate": "2025-07-21",
+      "description": "Ate food at hotel for meeting",
+      "status": "Pending",
+      "isDeleted": true,
+      "remark": "",
+      "approvedBy": "",
+      "decisionDate": "",
+      "createdAt": "2026-06-18T10:48:54.051Z",
+      "updatedAt": "2026-06-18T10:53:48.305Z",
+      "id": "5AcQbUfGtp0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -642,9 +642,9 @@ function showRestoreBin() {
 
     tbody.innerHTML = deletedExpenses.map(exp => `
         <tr>
-            <td>${capitalizeWords(expense.title)}</td>
-            <td>${capitalizeWords(expense.category)}</td>
-            <td>${capitalizeWords(expense.employeeName)}</td>
+            <td>${capitalizeWords(exp.title)}</td>
+            <td>${capitalizeWords(exp.category)}</td>
+            <td>${capitalizeWords(exp.employeeName)}</td>
             <td>₹${exp.amount}</td>
             <td>${exp.expenseDate}</td>
 
@@ -790,7 +790,7 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
             text: "You have been logged out successfully.",
             timer: 1500,
             showConfirmButton: false
-        });
+        }); 
 
         window.location.href = "../pages/index.html";
     }
