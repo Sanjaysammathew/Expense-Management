@@ -760,7 +760,7 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
             showConfirmButton: false
         });
 
-        window.location.href = "../landing/index.html";
+        window.location.href = "../Main/index.html";
     }
 });
 

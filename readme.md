@@ -91,7 +91,7 @@ The system provides a centralized platform for tracking expenses and streamlinin
 ```plaintext
 Claimly/
 │
-├── landing/
+├── main/
 │   ├── index.html
 │   ├── style.css
 │   └── login.js
