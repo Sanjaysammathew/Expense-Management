@@ -122,37 +122,37 @@ Claimly/
 
 ## Landing Page
 
-(assests/screenshot/landing%20page.png)
+![Landing Page](assests/screenshot/landing%20page.png)
 
 ---
 
 ## User Dashboard
 
-(assests/screenshot/User%20Dashboard.png)
+![User Dashboard](assests/screenshot/User%20Dashboard.png)
 
 ---
 
 ## Add Expense
 
-(assests/screenshot/Add%20Expense.png)
+![Add Expense](assests/screenshot/Add%20Expense.png)
 
 ---
 
 ## View Expense
 
-(assests/screenshot/View%20Expense.png)
+![View Expense](assests/screenshot/View%20Expense.png)
 
 ---
 
 ## Admin Dashboard
 
-(assests/screenshot/Admin%20Dashboard.png)
+![Admin Dashboard](assests/screenshot/Admin%20Dashboard.png)
 
 ---
 
 ## Approval Modal
 
-(assests/screenshot/Approval%20Modal.png)
+![Approval Modal](assests/screenshot/Approval%20Modal.png)
 
 ---
 
