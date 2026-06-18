@@ -64,6 +64,19 @@
       "role": "Employee",
       "createdAt": "2026-06-17T07:24:17.210Z",
       "id": "wTpf4esjK7A"
+    },
+    {
+      "employeeId": "106",
+      "fullName": "Vishal",
+      "email": "vishal05@gmail.com",
+      "password": "Vishal@2005",
+      "dob": "2004-07-20",
+      "department": "Sales",
+      "designation": "Developer",
+      "gender": "Male",
+      "role": "Employee",
+      "createdAt": "2026-06-18T11:44:54.252Z",
+      "id": "EOtHL0eAi44"
     }
   ],
   "expenses": [
@@ -150,14 +163,14 @@
       "category": "Travel",
       "amount": "3000",
       "expenseDate": "2025-06-17",
-      "description": "Went to chennai to attend company conferences",
+      "description": "Went to chennai to attend company conference",
       "status": "Pending",
       "isDeleted": false,
       "remark": "",
       "approvedBy": "",
       "decisionDate": "",
       "createdAt": "2026-06-17T06:55:14.891Z",
-      "updatedAt": "2026-06-18T10:53:35.394Z",
+      "updatedAt": "2026-06-18T11:10:58.836Z",
       "id": "M8Xg7_BQTfg"
     },
     {
@@ -267,6 +280,42 @@
       "createdAt": "2026-06-18T10:48:54.051Z",
       "updatedAt": "2026-06-18T10:53:48.305Z",
       "id": "5AcQbUfGtp0"
+    },
+    {
+      "employeeId": "106",
+      "employeeName": "Vishal",
+      "department": "Sales",
+      "title": "food",
+      "category": "Travel",
+      "amount": "2000",
+      "expenseDate": "2025-07-21",
+      "description": "ate food at hotel for meeting",
+      "status": "Pending",
+      "isDeleted": false,
+      "remark": "",
+      "approvedBy": "",
+      "decisionDate": "",
+      "createdAt": "2026-06-18T12:02:57.744Z",
+      "updatedAt": "2026-06-18T12:02:57.744Z",
+      "id": "ClGudtc7xy8"
+    },
+    {
+      "employeeId": "106",
+      "employeeName": "Vishal",
+      "department": "Sales",
+      "title": "food",
+      "category": "Food",
+      "amount": "2000",
+      "expenseDate": "2025-07-21",
+      "description": "had dinner at hotel in goa to attend client meeting",
+      "status": "Pending",
+      "isDeleted": false,
+      "remark": "",
+      "approvedBy": "",
+      "decisionDate": "",
+      "createdAt": "2026-06-18T12:08:16.535Z",
+      "updatedAt": "2026-06-18T12:08:16.535Z",
+      "id": "MxRYOcKARso"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
