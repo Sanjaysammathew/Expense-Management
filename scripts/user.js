@@ -201,10 +201,10 @@ loadExpenses();
 
 function renderExpenses(expenses) {
 
-        expenses.sort((a, b) =>
-        new Date(b.createdAt) - new Date(a.createdAt)
+       expenses.sort((a, b) =>
+        new Date(b.updatedAt) - new Date(a.updatedAt)
     );
-
+    
     const tbody = document.getElementById("expenseTableBody");
 
     tbody.innerHTML = expenses.map(exp => `
@@ -650,23 +650,26 @@ function showRestoreBin() {
         "expenseTableBody"
     );
 
-    tbody.innerHTML = deletedExpenses.map(exp => `
-        <tr>
-            <td>${capitalizeWords(exp.title)}</td>
-            <td>${capitalizeWords(exp.category)}</td>
-            <td>${capitalizeWords(exp.employeeName)}</td>
-            <td>₹${exp.amount}</td>
-            <td>${exp.expenseDate}</td>
-
-            <td>
-                <button
-                    class="btn btn-danger btn-sm"
-                    onclick="restoreExpense('${exp.id}')">
-                    Restore
-                </button>
-            </td>  
-        </tr>
-    `).join('');
+     tbody.innerHTML = deletedExpenses.map(exp => `
+<tr>
+    <td>${capitalizeWords(exp.title)}</td>
+    <td>${capitalizeWords(exp.category)}</td>
+    <td>₹${exp.amount}</td>
+    <td>${formatDate(exp.expenseDate)}</td>
+    <td>
+        <span class="badge bg-secondary">
+            Deleted
+        </span>
+    </td>
+    <td>
+        <button
+            class="btn btn-danger btn-sm"
+            onclick="restoreExpense('${exp.id}')">
+            Restore
+        </button>
+    </td>
+</tr>
+`).join('');
 }
 
 //this function is used to restore task 
