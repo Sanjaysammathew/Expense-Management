@@ -240,4 +240,4 @@ The project demonstrates practical implementation of CRUD operations, approval w
 
 ---
 
-### Developed with ❤️ using HTML, CSS, Bootstrap, JavaScript, and JSON Server
+### Developed  using HTML, CSS, Bootstrap, JavaScript, and JSON Server
