@@ -477,7 +477,7 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
             showConfirmButton: false
         });
 
-        window.location.href = "../Main/index.html";
+        window.location.href = "../pages/index.html";
     }
 });
 

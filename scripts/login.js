@@ -285,9 +285,9 @@ async function loginUser() {
             showConfirmButton: true
         }).then(() => {
             if (user.role === "Admin") {
-                window.location.href = "../admin/admin.html";
+                window.location.href = "../pages/admin.html";
             } else {
-                window.location.href = "../user/user.html";
+                window.location.href = "../pages/user.html";
             }
         });
 
