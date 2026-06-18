@@ -1,10 +1,10 @@
 # 💼 Claimly - Expense Claim Management System
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge\&logo=html5\&logoColor=white)
+<!-- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge\&logo=html5\&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge\&logo=css3\&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge\&logo=bootstrap\&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge\&logo=javascript\&logoColor=black)
-![JSON Server](https://img.shields.io/badge/JSON--Server-000000?style=for-the-badge)
+![JSON Server](https://img.shields.io/badge/JSON--Server-000000?style=for-the-badge) -->
 
 ## 📖 Overview
 
@@ -122,37 +122,37 @@ Claimly/
 
 ## Landing Page
 
-![Landing Page]![alt text](assests/screenshot/landing%20page.png)
+(assests/screenshot/landing%20page.png)
 
 ---
 
 ## User Dashboard
 
-![User Dashboard]![alt text](assests/screenshot/User%20Dashboard.png)
+(assests/screenshot/User%20Dashboard.png)
 
 ---
 
 ## Add Expense
 
-![Add Expense]![alt text](assests/screenshot/Add%20Expense.png)
+(assests/screenshot/Add%20Expense.png)
 
 ---
 
 ## View Expense
 
-![View Expense]![alt text](assests/screenshot/View%20Expense.png)
+(assests/screenshot/View%20Expense.png)
 
 ---
 
 ## Admin Dashboard
 
-![Admin Dashboard]![alt text](assests/screenshot/Admin%20Dashboard.png)
+(assests/screenshot/Admin%20Dashboard.png)
 
 ---
 
 ## Approval Modal
 
-![Approval Modal]![alt text](assests/screenshot/Approval%20Modal.png)
+(assests/screenshot/Approval%20Modal.png)
 
 ---
 
@@ -217,7 +217,7 @@ using Live Server or any local web server.
 * View Employee Claims
 * Monitor Dashboard Statistics
 
----
+<!-- ---
 
 # 🔮 Future Enhancements
 
@@ -230,7 +230,7 @@ using Live Server or any local web server.
 * 📈 Analytics Dashboard
 * ☁️ Cloud Deployment
 
----
+--- -->
 
 # 🏆 Conclusion
 
