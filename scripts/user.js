@@ -81,7 +81,16 @@ if (year < 1920) {
 }
 
 const title = document.getElementById("expTitle").value.trim();
-const category = document.getElementById("expCategory").value.trim();
+const category = document.getElementById("expCategory").value;
+
+if (!category) {
+    Swal.fire({
+        icon: "error",
+        title: "Category Required",
+        text: "Please select a category."
+    });
+    return;
+}
 const amount = document.getElementById("expAmount").value.trim();
 const description = document.getElementById("expDesc").value.trim();
 
@@ -143,6 +152,7 @@ if (Number(amount) <= 0) {
     });
 
     document.getElementById("expenseForm").reset();
+    document.getElementById("expCategory").selectedIndex = 0;
     const modalElement = document.getElementById("addModal");
     const modalInstance = bootstrap.Modal.getInstance(modalElement);
     if (modalInstance) {
@@ -654,7 +664,7 @@ function showRestoreBin() {
                     onclick="restoreExpense('${exp.id}')">
                     Restore
                 </button>
-            </td>
+            </td>  
         </tr>
     `).join('');
 }

@@ -3,6 +3,7 @@ const API = "http://localhost:3000/users";
 const emailRegex = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
 const passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
 const employeeRegex = /^\d{3}$/;
+const nameRegex = /^[A-Za-z0-9#@ ]+$/;
 
 //This function helps to set error if validation finds any error
 function setError(input, errorDiv, message) {
@@ -32,14 +33,26 @@ function validateEmpId() {
 
 function validateName() {
     const value = $("#fullName").val().trim();
+
     if (value === "") {
         setError("#fullName", "error-fullName", "Name is required");
         return false;
     }
+
     if (value.length < 3) {
         setError("#fullName", "error-fullName", "Minimum 3 characters required");
         return false;
     }
+
+    if (!nameRegex.test(value)) {
+        setError(
+            "#fullName",
+            "error-fullName",
+            "Only letters, numbers, # and @ are allowed"
+        );
+        return false;
+    }
+
     clearError("#fullName", "error-fullName");
     return true;
 }
@@ -237,9 +250,44 @@ if (duplicateEmpId) {
     }
 }
 
+function validateLoginName() {
+    const value = $("#name").val().trim();
+
+    if (value === "") {
+        $("#error-loginName").text("Username is required");
+        $("#name").addClass("is-invalid");
+        return false;
+    }
+
+    if (!nameRegex.test(value)) {
+        $("#error-loginName").text(
+            "Only letters, numbers, # and @ are allowed"
+        );
+        $("#name").addClass("is-invalid");
+        return false;
+    }
+
+    $("#error-loginName").text("");
+    $("#name").removeClass("is-invalid");
+
+    return true;
+}
+$("#name").on("input", function () {
+    validateLoginName();
+});
+
 //this function use to fetch data and login
 
 async function loginUser() {
+
+
+    const isUsernameValid = validateLoginName();
+
+    if (!isUsernameValid) {
+        return;
+    }
+
+
     const username = $("#name").val().trim();
     const password = $("#password").val().trim();
 
@@ -304,7 +352,10 @@ async function loginUser() {
 $("#empId").on("input", validateEmpId);
 $("#fullName").on("input", validateName);
 $("#email").on("input", validateEmail);
-$("#regPassword").on("input", validatePassword);
+$("#regPassword").on("input", function () {
+    validatePassword();
+    validateConfirmPassword();
+});
 $("#Confirmpassword").on("input", validateConfirmPassword);
 $("#date").on("input change", validateDOB);
 $("#department").on("change", validateDepartment);
