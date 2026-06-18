@@ -12,6 +12,8 @@ document.getElementById("expDate").max =
 document.getElementById("fromDate").max = today;
 document.getElementById("toDate").max = today;
 
+//this is used to get employee name employee dept from login details so dont want type the data again
+
 myModalEl.addEventListener('show.bs.modal', () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (currentUser) {
@@ -22,6 +24,8 @@ myModalEl.addEventListener('show.bs.modal', () => {
     console.warn("No User is Found");
   }
 });
+
+//It is used for profile section to show all user data
 
 $(document).ready(function () {
   $('#userProfileOffcanvas').on('show.bs.offcanvas', function () {
@@ -48,6 +52,7 @@ const firstName = currentUser.fullName.split(" ")[0];
 $("#dropdownUsername").text(currentUser.fullName || "User");
 $("#navUsername").text(firstName);
 
+//when user click submit it check all validations and post data to the json server
 document.getElementById("expenseForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -156,6 +161,9 @@ if (Number(amount) <= 0) {
 
 let allExpenses = [];
 
+// this function is used to fetch data from json server and store in allExpense array
+//  so that we dont want to write fetch functions many time
+
 async function loadExpenses() {
   try {
 
@@ -179,6 +187,8 @@ async function loadExpenses() {
 }
 loadExpenses();
 
+//this function is used  to show data to the user by targeting elements and provide value using allExpense array
+
 function renderExpenses(expenses) {
 
         expenses.sort((a, b) =>
@@ -194,13 +204,15 @@ function renderExpenses(expenses) {
             <td>₹${exp.amount}</td>
             <td>${formatDate(exp.expenseDate)}</td>
             <td>
-                <span class="badge ${
-                    exp.status === "Completed"
-                    ? "bg-success"
-                    : "bg-warning text-dark"
-                }">
-                    ${exp.status}
-                </span>
+              <span class="badge ${
+    exp.status === "Completed"
+        ? "bg-success"
+        : exp.status === "Rejected"
+        ? "bg-danger"
+        : "bg-warning text-dark"
+}">
+    ${exp.status}
+</span>
             </td>
       <td>
     <div class="d-flex justify-content-center gap-2">
@@ -242,6 +254,7 @@ function renderExpenses(expenses) {
     enableTooltips();
 }
 
+//this function is triggered when user click view icon it shows the modal and details using all expense array
 
 function viewExpense(id) {
 
@@ -261,11 +274,13 @@ function viewExpense(id) {
 
             <h4 class="fw-bold mt-3">${expense.title}</h4>
 
-            <span class="badge ${
-                expense.status === "Completed"
-                    ? "bg-success"
-                    : "bg-warning text-dark"
-            } px-4 py-2 rounded-pill">
+        <span class="badge ${
+    expense.status === "Completed"
+        ? "bg-success"
+        : expense.status === "Rejected"
+        ? "bg-danger"
+        : "bg-warning text-dark"
+} px-4 py-2 rounded-pill">
                 ${expense.status}
             </span>
 
@@ -332,12 +347,15 @@ function viewExpense(id) {
                     </div>
                 </div>
 
-                <div class="text-center">
-                    <small class="text-muted d-block">Approved By</small>
-                    <h6 class="fw-semibold">
-                        ${expense.approvedBy || "N/A"}
-                    </h6>
-                </div>
+                <div class="col-md-6">
+    <small class="text-muted">
+        ${expense.status === "Rejected"
+            ? "Rejected By"
+            : "Approved By"}
+    </small>
+
+    <h6>${expense.approvedBy || "N/A"}</h6>
+</div>
 
             </div>
         </div>
@@ -371,6 +389,8 @@ function viewExpense(id) {
     ).show();
 }
 
+//this function is used to filter if all button is clicked it show all task pending means pending alone
+
 document.querySelectorAll("#button-container button")
 .forEach(btn => {
 
@@ -401,6 +421,8 @@ btn.classList.add("active");
 
 });
 
+//this function used to edit modal open when user click update button (it will not update just show the edit details)
+
 function editExpense(id) {
 
     const expense = allExpenses.find(
@@ -423,6 +445,7 @@ function editExpense(id) {
     ).show();
 }
 
+// this function is used to update details using patch method and also check validations
 document
 .getElementById("updateExpenseBtn")
 .addEventListener("click", async () => {
@@ -536,7 +559,7 @@ if (year < 1920) {
         });
     }
 });
-
+// this fnction is used to count the task and display in cards
 function countStat(expenses) {
 
     const activeExpenses = expenses.filter(
@@ -563,6 +586,7 @@ function countStat(expenses) {
         pending;
 }
 
+//this function is used to delete the task
 async function deleteExpense(id) {
 
     const result = await Swal.fire({
@@ -598,6 +622,7 @@ async function deleteExpense(id) {
     );
 }
 
+//this function is used to show the task that is deleted with restore button
 document
 .getElementById("restoreBtn")
 .addEventListener("click", showRestoreBin);
@@ -634,6 +659,7 @@ function showRestoreBin() {
     `).join('');
 }
 
+//this function is used to restore task 
 async function restoreExpense(id) {
 
     await fetch(`http://localhost:3000/expenses/${id}`, {
@@ -668,6 +694,7 @@ document
 .getElementById("toDate")
 .addEventListener("change", applyFilters);
 
+//this function is used for filter by using task name start date and end date 
 function applyFilters() {
 
     const searchText = document
@@ -711,6 +738,7 @@ function applyFilters() {
     renderExpenses(filtered);
 }
 
+//It is clear button if i click clear button it deletes all the input in the input and also name
 document
 .getElementById("clearFiltersBtn")
 .addEventListener("click", () => {
@@ -727,6 +755,8 @@ document
     );
 });
 
+//used for enable toolips
+
 function enableTooltips() {
     const tooltipTriggerList =
         document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -735,6 +765,8 @@ function enableTooltips() {
         new bootstrap.Tooltip(el);
     });
 }
+
+//Logout button
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
 
@@ -764,6 +796,8 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
     }
 });
 
+//formatting date
+
 function formatDate(dateString) {
     const date = new Date(dateString);
 
@@ -774,6 +808,7 @@ function formatDate(dateString) {
     return `${day}-${month}-${year}`;
 }
 
+//captilize the word
 function capitalizeWords(text) {
     return text
         ?.toLowerCase()

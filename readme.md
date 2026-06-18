@@ -161,13 +161,13 @@ Claimly/
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/your-username/claimly.git
+git clone https://github.com/Sanjaysammathew/Expense-Management.git
 ```
 
 ## 2️⃣ Navigate to Project
 
 ```bash
-cd claimly
+cd expense-management
 ```
 
 ## 3️⃣ Install JSON Server
@@ -187,7 +187,7 @@ json-server --watch db.json --port 3000
 Open:
 
 ```plaintext
-landing/index.html
+Main/index.html
 ```
 
 using Live Server or any local web server.

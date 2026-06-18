@@ -4,6 +4,7 @@ const emailRegex = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
 const passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
 const employeeRegex = /^\d{3}$/;
 
+//This function helps to set error if validation finds any error
 function setError(input, errorDiv, message) {
     $("#" + errorDiv).text(message);
     $(input).addClass("is-invalid").removeClass("is-valid");
@@ -13,6 +14,7 @@ function clearError(input, errorDiv) {
     $("#" + errorDiv).text("");
     $(input).addClass("is-valid").removeClass("is-invalid");
 }
+ //validation functions for eah input field
 
 function validateEmpId() {
     const value = $("#empId").val().trim();
@@ -149,7 +151,7 @@ function validateDesignation() {
     return true;
 }
 
-
+ //Posting data to json server
 
 async function registerUser() {
     const isEmpIdValid = validateEmpId();
@@ -234,6 +236,8 @@ if (duplicateEmpId) {
         });
     }
 }
+
+//this function use to fetch data and login
 
 async function loginUser() {
     const username = $("#name").val().trim();

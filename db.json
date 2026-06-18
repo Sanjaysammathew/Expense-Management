@@ -133,13 +133,13 @@
       "amount": "1000",
       "expenseDate": "2026-04-13",
       "description": "I bought required tools for product",
-      "status": "Pending",
+      "status": "Rejected",
       "isDeleted": false,
-      "remark": "",
-      "approvedBy": "",
-      "decisionDate": "",
+      "remark": "it is not approved bring invoice as soon as possible",
+      "approvedBy": "Monisha",
+      "decisionDate": "2026-06-18T09:46:25.674Z",
       "createdAt": "2026-06-17T05:49:06.346Z",
-      "updatedAt": "2026-06-17T05:49:06.346Z",
+      "updatedAt": "2026-06-18T09:46:25.674Z",
       "id": "inIj2uwfthA"
     },
     {

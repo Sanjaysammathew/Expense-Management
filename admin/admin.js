@@ -6,6 +6,7 @@ if (currentUser) {
     document.getElementById("navUsername").textContent = firstName;
 }
 
+////It is used for profile section to show all user data
 $(document).ready(function () {
   $('#userProfileOffcanvas').on('show.bs.offcanvas', function () {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -26,6 +27,8 @@ $(document).ready(function () {
 });
 
 
+// this function is used to fetch data from json server and store in allExpense array
+//  so that we dont want to write fetch functions many time
 
 let allExpenses = [];
 
@@ -51,6 +54,8 @@ async function loadExpenses() {
 }
 loadExpenses();
 
+//this function is used  to show data to the user by targeting elements and provide value using allExpense array
+
 function renderExpenses(expenses) {
 
           expenses.sort((a, b) =>
@@ -68,13 +73,15 @@ function renderExpenses(expenses) {
             <td>₹${exp.amount}</td>
             <td>${formatDate(exp.expenseDate)}</td>
             <td>
-                <span class="badge ${
-                    exp.status === "Completed"
-                    ? "bg-success"
-                    : "bg-warning text-dark"
-                }">
-                    ${exp.status}
-                </span>
+          <span class="badge ${
+    exp.status === "Completed"
+        ? "bg-success"
+        : exp.status === "Rejected"
+        ? "bg-danger"
+        : "bg-warning text-dark"
+}">
+    ${exp.status}
+</span>
             </td>
             <td>
                 <button
@@ -88,6 +95,7 @@ function renderExpenses(expenses) {
      enableTooltips()
 }
 
+//this function is triggered when user click view icon it shows the modal and details using all expense array
 function viewExpense(id) {
 
     const expense = allExpenses.find(x => x.id === id);
@@ -104,11 +112,13 @@ function viewExpense(id) {
 
         <h4 class="fw-bold mt-3">${capitalizeWords(expense.title)}</h4>
 
-        <span class="badge ${
-            expense.status === "Completed"
-                ? "bg-success"
-                : "bg-warning text-dark"
-        } px-4 py-2 rounded-pill">
+         <span class="badge ${
+    expense.status === "Completed"
+        ? "bg-success"
+        : expense.status === "Rejected"
+        ? "bg-danger"
+        : "bg-warning text-dark"
+} px-4 py-2 rounded-pill">
             ${expense.status}
         </span>
 
@@ -190,10 +200,15 @@ function viewExpense(id) {
 
                 <div class="row text-center">
 
-                    <div class="col-md-6">
-                        <small class="text-muted">Approved By</small>
-                        <h6>${expense.approvedBy || "N/A"}</h6>
-                    </div>
+                  <div class="col-md-6">
+    <small class="text-muted">
+        ${expense.status === "Rejected"
+            ? "Rejected By"
+            : "Approved By"}
+    </small>
+
+    <h6>${expense.approvedBy || "N/A"}</h6>
+</div>
 
                     <div class="col-md-6">
                         <small class="text-muted">Remark</small>
@@ -215,6 +230,7 @@ function viewExpense(id) {
     ).show();
 }
 
+//this function is used to filter if all button is clicked it show all task pending means pending alone
 document.querySelectorAll("#button-container button")
 .forEach(btn => {
 
@@ -246,97 +262,8 @@ document.querySelectorAll("#button-container button")
 
 });
 
-function editExpense(id) {
 
-    const expense = allExpenses.find(
-        exp => exp.id == id
-    );
-
-    document.getElementById("editId").value = expense.id;
-    document.getElementById("editTitle").value = expense.title;
-    document.getElementById("editCategory").value = expense.category;
-    document.getElementById("editAmount").value = expense.amount;
-    document.getElementById("editDate").value = expense.expenseDate;
-    document.getElementById("editDesc").value = expense.description;
-
-    bootstrap.Modal.getInstance(
-        document.getElementById("viewModal")
-    ).hide();
-
-    new bootstrap.Modal(
-        document.getElementById("editModal")
-    ).show();
-}
-
-document
-.getElementById("updateExpenseBtn")
-.addEventListener("click", async () => {
-
-    const id =
-        document.getElementById("editId").value;
-
-    const updatedExpense = {
-
-        title:
-            document.getElementById("editTitle").value,
-
-        category:
-            document.getElementById("editCategory").value,
-
-        amount:
-            document.getElementById("editAmount").value,
-
-        expenseDate:
-            document.getElementById("editDate").value,
-
-        description:
-            document.getElementById("editDesc").value,
-
-
-        updatedAt:
-            new Date().toISOString()
-    };
-
-    try {
-
-        const response = await fetch(
-            `http://localhost:3000/expenses/${id}`,
-            {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(updatedExpense)
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error("Update failed");
-        }
-
-        bootstrap.Modal.getInstance(
-            document.getElementById("editModal")
-        ).hide();
-
-        await loadExpenses();
-
-        Swal.fire({
-            icon: "success",
-            title: "Updated",
-            text: "Expense updated successfully"
-        });
-
-    } catch (error) {
-
-        console.error(error);
-
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Failed to update expense"
-        });
-    }
-});
+/// this fnction is used to count the task and display in cards
 
 function countStat(expenses) {
 
@@ -379,6 +306,7 @@ document
 .getElementById("toDate")
 .addEventListener("change", applyFilters);
 
+///this function is used for filter by using task name start date and end date 
 function applyFilters() {
 
     const searchText = document
@@ -418,7 +346,7 @@ function applyFilters() {
 
     renderExpenses(filtered);
 }
-
+// used the clear all the inputs
 document
 .getElementById("clearFiltersBtn")
 .addEventListener("click", () => {
@@ -433,6 +361,8 @@ document
         )
     );
 });
+
+//used to show remark modal when we click approve or reject
 function openDecisionModal(id, status) {
 
     document.getElementById("decisionExpenseId").value = id;
@@ -452,7 +382,7 @@ function openDecisionModal(id, status) {
         document.getElementById("decisionModal")
     ).show();
 }
-
+ //once we save the decison it update the status and other details
 document.getElementById("saveDecisionBtn")
 .addEventListener("click", async () => {
 
@@ -514,6 +444,7 @@ document.getElementById("saveDecisionBtn")
         });
     }
 });
+//enable tooltip
 function enableTooltips(){
     const tooltipTriggerList=document.querySelectorAll('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].forEach(el =>{
@@ -521,6 +452,7 @@ function enableTooltips(){
     })
 }
 
+//logout button
 document.getElementById("logoutBtn").addEventListener("click", async () => {
 
     const result = await Swal.fire({
@@ -549,6 +481,8 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
     }
 });
 
+//format date
+
 function formatDate(dateString) {
     const date = new Date(dateString);
 
@@ -558,6 +492,8 @@ function formatDate(dateString) {
 
     return `${day}-${month}-${year}`;
 }
+
+//captilize word
 
 function capitalizeWords(text) {
     return text
